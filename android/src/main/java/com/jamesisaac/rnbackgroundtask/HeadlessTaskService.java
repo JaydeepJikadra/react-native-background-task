@@ -42,7 +42,7 @@ public class HeadlessTaskService extends HeadlessJsTaskService {
         Bundle extras = intent.getExtras();
         // If extras have been passed to the intent, pass them on into the JS as taskData
         // which can be accessed as the first param.
-      //  WritableMap data = /* extras != null ? Arguments.fromBundle(extras) : */ Arguments.createMap();
+        WritableMap data = /* extras != null ? Arguments.fromBundle(extras) : */ Arguments.createMap();
 
         int timeout = extras.getInt("timeout");
 
@@ -50,7 +50,7 @@ public class HeadlessTaskService extends HeadlessJsTaskService {
         return new HeadlessJsTaskConfig(
                 // The the task was registered with in JS - must match
                 "BackgroundTask",
-                Arguments.fromBundle(extras),
+                data,
                 TimeUnit.SECONDS.toMillis(timeout)
         );
     }
